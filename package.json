@@ -1,6 +1,6 @@
 {
   "name": "redux-duck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helper function to create Redux modules using the ducks-modular-redux proposal.",
   "main": "build/index.js",
   "directories": {
