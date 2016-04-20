@@ -1,5 +1,5 @@
 # redux-duck
-Helper function to create Redux modules using the `ducks-modular-redux` proposal.
+Helper function to create Redux modules using the [ducks-modular-redux](https://github.com/erikras/ducks-modular-redux/) proposal.
 
 ## Installation
 ```bash
