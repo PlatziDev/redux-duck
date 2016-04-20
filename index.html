@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>redux-duck by sergiodxa</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>redux-duck</h1>
+        <p>Helper function to create Redux modules using the ducks-modular-redux proposal</p>
+
+        <p class="view"><a href="https://github.com/sergiodxa/redux-duck">View the Project on GitHub <small>sergiodxa/redux-duck</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/sergiodxa/redux-duck/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sergiodxa/redux-duck/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sergiodxa/redux-duck">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="redux-duck" class="anchor" href="#redux-duck" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>redux-duck</h1>
+
+<p>Helper function to create Redux modules using the <code>ducks-modular-redux</code> proposal.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-source-shell"><pre>npm i -S redux-duck</pre></div>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
+
+<h3>
+<a id="create-duck" class="anchor" href="#create-duck" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create duck</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> { <span class="pl-smi">createDuck</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>redux-duck<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">const</span> <span class="pl-c1">myDuck</span> <span class="pl-k">=</span> <span class="pl-en">createDuck</span>(<span class="pl-s"><span class="pl-pds">'</span>duck-name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>application-name<span class="pl-pds">'</span></span>);</pre></div>
+
+<ul>
+<li>
+<code>createDuck</code> receive 2 arguments, the second argument is optional.</li>
+<li>The first argument is the duck name.</li>
+<li>The second, and optional, argument is the application or module name.</li>
+</ul>
+
+<h3>
+<a id="define-action-types" class="anchor" href="#define-action-types" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Define action types</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">ACTION_TYPE</span> <span class="pl-k">=</span> <span class="pl-smi">myDuck</span>.<span class="pl-en">defineType</span>(<span class="pl-s"><span class="pl-pds">'</span>ACTION_TYPE<span class="pl-pds">'</span></span>);</pre></div>
+
+<ul>
+<li>
+<code>defineType</code> receive just one argument.</li>
+<li>The argument is the name of the action.</li>
+<li>The result should be an string like <code>application-name/duck-name/ACTION_TYPE</code> or <code>duck-name/ACTION_TYPE</code> if the application or module name was not defined.</li>
+</ul>
+
+<h3>
+<a id="create-action-creators" class="anchor" href="#create-action-creators" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create action creators</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">actionType</span> <span class="pl-k">=</span> <span class="pl-smi">myDuck</span>.<span class="pl-en">createAction</span>(<span class="pl-c1">ACTION_TYPE</span>);</pre></div>
+
+<ul>
+<li>
+<code>createAction</code> receive just one argument.</li>
+<li>This argument should be the defined action type string.</li>
+<li>It should return a function who will receive the action payload and return a valid (FSA compilant) action object.</li>
+<li>The action creator will receive an optional argument with the action payload.</li>
+</ul>
+
+<h3>
+<a id="create-reducer" class="anchor" href="#create-reducer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create reducer</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">initialState</span> <span class="pl-k">=</span> {
+  list<span class="pl-k">:</span> <span class="pl-smi">Immutable</span>.<span class="pl-en">List</span>(),
+  data<span class="pl-k">:</span> <span class="pl-smi">Immutable</span>.<span class="pl-en">Map</span>(),
+};
+
+<span class="pl-k">const</span> <span class="pl-c1">reducer</span> <span class="pl-k">=</span> <span class="pl-smi">myDuck</span>.<span class="pl-en">createReducer</span>({
+  [<span class="pl-c1">ACTION_TYPE</span>]<span class="pl-k">:</span> (<span class="pl-smi">state</span>, <span class="pl-smi">action</span>) <span class="pl-k">=&gt;</span> ({
+    <span class="pl-k">...</span>state,
+    list<span class="pl-k">:</span> <span class="pl-smi">state</span>.<span class="pl-smi">list</span>.<span class="pl-c1">push</span>(<span class="pl-smi">action</span>.<span class="pl-smi">payload</span>.<span class="pl-c1">id</span>),
+    data<span class="pl-k">:</span> <span class="pl-smi">state</span>.<span class="pl-smi">map</span>.<span class="pl-en">set</span>(<span class="pl-smi">action</span>.<span class="pl-smi">payload</span>.<span class="pl-c1">id</span><span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-smi">action</span>.<span class="pl-smi">payload</span>),
+  }),
+}, initialState);</pre></div>
+
+<ul>
+<li>
+<code>createReducer</code> receive two arguments, both required.</li>
+<li>The first argument is an object with the possible action cases.</li>
+<li>The second argument is the reducer initial state.</li>
+<li>The first argument should use the previously defined <em>action types</em> as keys.</li>
+<li>Each key in the first argument object should be a function who will receive the current state and the dispatched action as arguments and return the updated state.</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/sergiodxa">sergiodxa</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
