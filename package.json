@@ -1,6 +1,6 @@
 {
   "name": "redux-duck",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Helper function to create Redux modules using the ducks-modular-redux proposal.",
   "main": "build/index.js",
   "directories": {
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sergiodxa/redux-duck.git"
+    "url": "git+https://github.com/PlatziDev/redux-duck.git"
   },
   "keywords": [
     "redux",
@@ -27,9 +27,9 @@
   "author": "Sergio Daniel Xalambrí <sergio@xalambri.com.ar> (http://sergio.xalambri.com.ar/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sergiodxa/redux-duck/issues"
+    "url": "https://github.com/PlatziDev/redux-duck/issues"
   },
-  "homepage": "http://sergio.xalambri.com.ar/redux-duck/",
+  "homepage": "https://github.com/PlatziDev/redux-duck/",
   "devDependencies": {
     "babel": "6.5.2",
     "babel-cli": "6.7.5",
