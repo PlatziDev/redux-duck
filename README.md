@@ -6,6 +6,14 @@ Helper function to create Redux modules using the [ducks-modular-redux](https://
 npm i -S redux-duck
 ```
 
+### TypeScript
+
+TypeScript type definitions for the package are developed separately at [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/redux-duck/index.d.ts). Their use is documented in the related [example code](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/redux-duck/redux-duck-tests.ts). You can install the type definitions as follows.
+
+```bash
+npm i -D "@types/redux-duck"
+```
+
 ## API
 ### Create duck
 ```javascript
