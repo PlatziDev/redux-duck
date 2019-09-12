@@ -1,5 +1,5 @@
 # redux-duck
-Helper function to create Redux modules using the [ducks-modular-redux](https://github.com/erikras/ducks-modular-redux/) proposal.
+Helper function to create Redux modules using the [ducks-modular-redux](https://github.com/erikras/ducks-modular-redux/) proposal. The helper itself is written in JavaScript. TypeScript types for the package are developed [separately](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/redux-duck/redux-duck-tests.ts).
 
 ## Installation
 ```bash
